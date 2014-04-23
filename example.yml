@@ -1,0 +1,16 @@
+---
+- hosts: all
+  user: vagrant
+
+  tasks:
+    - include: tasks/common.yml
+    - include: tasks/mongodb.yml
+    - include: tasks/oracle-java-7.yml
+
+    - name: Install Maven
+      sudo: yes
+      apt: pkg=maven state=latest update-cache=yes
+      tags: maven
+
+    - name: Copy project
+      synchronize: src=../project dest=/home/vagrant/
