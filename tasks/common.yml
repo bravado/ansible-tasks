@@ -5,7 +5,8 @@
   apt: update-cache=yes
   tags: common
 
-- name: Common | Update language
+- name: Install base packages
   sudo: yes
-  apt: pkg=language-pack-en
-  tags: common
+  apt: name={{ item }} state=present
+  with_items:
+    - language-pack-en

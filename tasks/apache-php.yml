@@ -1,0 +1,14 @@
+# apache-php.yml
+---
+
+- name: Install Apache
+  apt: name=apache2 state=present
+
+- name: Install PHP and modules
+  apt: name=$item state=present
+  with_items:
+    - libapache2-mod-php5
+    - php5-mysql
+
+- name: Start Apache
+  service: name=apache2 state=running enabled=yes
