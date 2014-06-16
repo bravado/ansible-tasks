@@ -1,12 +1,14 @@
 ---
-  
 - name: Common | Update apt cache
   sudo: yes
-  apt: update-cache=yes
+  apt: update-cache=true
   tags: common
 
-- name: Install base packages
+- name: Check dependencies
   sudo: yes
-  apt: name={{ item }} state=present
-  with_items:
-    - language-pack-en
+  apt: name=python-apt state=present
+
+- name: Common | Update language
+  sudo: yes
+  apt: pkg=language-pack-en
+  tags: common
