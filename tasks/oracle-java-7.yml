@@ -3,7 +3,7 @@
   sudo: yes
   apt: name=$item state=latest update_cache=yes
   with_items:
-    - python-software-properties
+    - python-apt
  
 - name: Add Java repository to sources
   sudo: yes
